@@ -309,10 +309,12 @@ function session(options) {
           }
 
           debug('destroyed');
-          writeend();
+          //writeend();
+          _end.call(res, chunk, encoding);
         });
 
-        return writetop();
+        //return writetop();
+        return;
       }
 
       // no session to save
@@ -333,10 +335,12 @@ function session(options) {
             defer(next, err);
           }
 
-          writeend();
+          //writeend();
+          _end.call(res, chunk, encoding);
         });
 
-        return writetop();
+        //return writetop();
+        return;
       } else if (storeImplementsTouch && shouldTouch(req)) {
         // store implements touch method
         debug('touching');
@@ -346,10 +350,12 @@ function session(options) {
           }
 
           debug('touched');
-          writeend();
+          //writeend();
+          _end.call(res, chunk, encoding);
         });
 
-        return writetop();
+        //return writetop();
+        return;
       }
 
       return _end.call(res, chunk, encoding);
